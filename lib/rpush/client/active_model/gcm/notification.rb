@@ -9,7 +9,7 @@ module Rpush
 
           def self.included(base)
             base.instance_eval do
-              validates :registration_ids, presence: true
+              # validates :registration_ids, presence: true
               validates :priority, inclusion: { in: GCM_PRIORITIES }, allow_nil: true
 
               validates_with Rpush::Client::ActiveModel::PayloadDataSizeValidator, limit: 4096
@@ -35,16 +35,27 @@ module Rpush
           end
 
           def as_json(options = nil)
+
+            sanitized_data = data.dup
+            sanitized_notification = notification.dup if notification
+
+            to = sanitized_data.delete('to') if data['to']
+            sanitized_notification.delete('to') if sanitized_notification['to']
+
             json = {
-                'registration_ids' => registration_ids,
                 'delay_while_idle' => delay_while_idle,
-                'data' => data
+                'data' => sanitized_data
             }
+
+            json['to'] = to if to
+            json['registration_ids'] = registration_ids unless to
+
             json['collapse_key'] = collapse_key if collapse_key
             json['content_available'] = content_available if content_available
-            json['notification'] = notification if notification
+            json['notification'] = sanitized_notification if notification
             json['priority'] = priority_for_notification if priority
             json['time_to_live'] = expiry if expiry
+
             json
           end
 
