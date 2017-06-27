@@ -36,7 +36,7 @@ module Rpush
           when 200
             ok(response)
           when 400
-            bad_request
+            bad_request(response)
           when 401
             unauthorized
           when 500
@@ -118,8 +118,8 @@ module Rpush
                                                       registration_ids, deliver_after_header(response), @notification.app)
         end
 
-        def bad_request
-          fail Rpush::DeliveryError.new(400, @notification.id, 'GCM failed to parse the JSON request. Possibly an Rpush bug, please open an issue.')
+        def bad_request(response)
+          fail Rpush::DeliveryError.new(400, @notification.id, response.inspect)
         end
 
         def unauthorized

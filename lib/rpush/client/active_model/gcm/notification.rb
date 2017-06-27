@@ -43,7 +43,6 @@ module Rpush
             sanitized_notification.delete('to') if sanitized_notification['to']
 
             json = {
-                'delay_while_idle' => delay_while_idle,
                 'data' => sanitized_data
             }
 
