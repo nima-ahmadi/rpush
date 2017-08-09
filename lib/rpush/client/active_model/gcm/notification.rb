@@ -40,7 +40,10 @@ module Rpush
             sanitized_notification = notification.dup if notification
 
             to = sanitized_data.delete('to') if data['to']
-            sanitized_notification.delete('to') if sanitized_notification['to']
+
+            if sanitized_notification
+              sanitized_notification.delete('to') if sanitized_notification['to']
+            end
 
             json = {
                 'data' => sanitized_data
