@@ -1,4 +1,28 @@
-## 3.0.0 (unreleased)
+## HEAD
+
+### Breaking Changes
+
+- None
+
+### Added
+
+- None
+
+### Fixed
+
+- None
+
+## 3.0.0 (2017-09-15)
+
+Same as 3.0.0.rc1 including:
+
+#### Features
+
+* Added support for latest modis version ([#378](https://github.com/rpush/rpush/pull/378)) by [@milgner](https://github.com/milgner)
+
+## 3.0.0.rc1 (2017-08-31)
+
+When upgrading, don't forget to run `bundle exec rpush init` to get all the latest migrations.
 
 #### Features
 
@@ -7,9 +31,15 @@
 
 #### Changes
 
+* **Breaking:** Dropped support for old Rubies and Rails versions. rpush 3.0 only supports Ruby versions 2.2.2 or higher and
+  Rails 4.2 or higher. ([#366](https://github.com/rpush/rpush/pull/366) by [@aried3r](https://github.com/aried3r))
+* **Breaking:** Dropped MongoDB support because there was no one maintaining it. But we're open to adding it back in. ([#366](https://github.com/rpush/rpush/pull/366) by [@aried3r](https://github.com/aried3r))
+* **Breaking:** Dropped JRuby support. ([#366](https://github.com/rpush/rpush/pull/366) by [@aried3r](https://github.com/aried3r))
+
 * Make synchronizer aware of GCM and WNS apps ([#254](https://github.com/rpush/rpush/pull/254) by [@wouterh](https://github.com/wouterh))
 * Precise after init commit msg ([#266](https://github.com/rpush/rpush/pull/266) by [@azranel](https://github.com/azranel))
 * Use new GCM endpoint ([#303](https://github.com/rpush/rpush/pull/303) by [@aried3r](https://github.com/aried3r))
+* Remove sound default value ([#320](https://github.com/rpush/rpush/pull/320) by [@amaierhofer](https://github.com/amaierhofer))
 
 #### Bugfixes
 
